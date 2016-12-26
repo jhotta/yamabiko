@@ -1,16 +1,13 @@
 {
   "intents": [
     {
-      "intent": "MyColorIsIntent",
+      "intent": "WhatsTheValueIntent",
       "slots": [
         {
-          "name": "Color",
-          "type": "AMAZON.Color"
+          "name": "Metric",
+          "type": "LIST_OF_METRIC"
         }
       ]
-    },
-    {
-      "intent": "WhatsMyColorIntent"
     }
   ]
 }

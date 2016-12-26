@@ -12,19 +12,34 @@ initialize(**options)
 
 
 def cpu_idle_query(now):
-    query = 'system.cpu.idle{*} by {host}'
+    query = 'system.cpu.idle{*} by {*}'
     try:
-        a = api.Metric.query(start=now - 20, end=now, query=query)['series'][-1]['pointlist']
+        api_call_response = api.Metric.query(start=now - 60, end=now, query=query)
+        metric_value = api_call_response['series'][-1]['pointlist'][-1][-1]
     except:
-        a = api.Metric.query(start=now - 40, end=now, query=query)['series'][-1]['pointlist']
+        metric_value = "not able to get the value"
 
-    print(a[-1])
-    return (a[-1][-1])
+    return metric_value
+
+
+def get_metric_value(now, metric):
+
+    if metric.lower() == 'cpu':
+        response = cpu_idle_query(now)
+    elif metric.lower() == 'hdd':
+        response = 'not available'
+    else:
+        response = None
+
+    return response
 
 
 def main():
     now = int(time.time())
-    print(cpu_idle_query(now))
+    metrics = ['CPU', 'HDD', 'Memory']
+
+    for metric in metrics:
+        print get_metric_value(now, metric)
 
 
 if __name__ == '__main__':

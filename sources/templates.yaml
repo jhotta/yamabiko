@@ -1,18 +1,13 @@
+
+card_title: Yamabiko
+
 welcome: |
-    Welcome to the Alexa Skills Kit sample. Please tell me your favorite color by
-    saying, my favorite color is red
-welcome_reprompt: Please tell me your favorite color by saying, my favorite color is red
+    Welcome to the Hachi sample. Please tell me what metric value you need by saying like, I want cpu value
 
-known_color: |
-    I now know that your favorite color is {{ color }}. You can ask me your favorite color
-    by saying, what's my favorite color?
-known_color_reprompt: You can ask me your favorite color by saying, what's my favorite color?
+welcome_reprompt: Please tell me what metric value you need by saying like , I want cpu value
 
-known_color_bye: Your favorite color is {{ color }}. Goodbye
+known_metric_bye: Value for {{ metric }} is {{ value }}. Have a nice day.
 
-unknown_color: I'm not sure what your favorite color is, please try again
-
-unknown_color_reprompt: |
-    I'm not sure what your favorite color is. You can tell me your favorite color by saying,
-    my favorite color is red
-card_title: Session
+unknown_metric_reprompt: |
+    I'm not sure what you need |
+    Please tell me what metric value you need by saying like , I want cpu value

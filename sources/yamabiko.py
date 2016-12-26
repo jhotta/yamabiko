@@ -2,15 +2,12 @@ import logging
 
 from flask import Flask, json, render_template
 from flask_ask import Ask, request, session, question, statement
-from dogfood import cpu_idle_query
+from dogfood import get_metric_value
 import time
 
 app = Flask(__name__)
 ask = Ask(app, "/")
 logging.getLogger('flask_ask').setLevel(logging.DEBUG)
-
-
-COLOR_KEY = "COLOR"
 
 
 @ask.launch
@@ -21,30 +18,21 @@ def launch():
     return question(question_text).reprompt(reprompt_text).simple_card(card_title, question_text)
 
 
-@ask.intent('MyColorIsIntent', mapping={'color': 'Color'})
-def my_color_is(color):
+@ask.intent('WhatsTheValueIntent', mapping={'metric': 'Metric'})
+def metric_is(metric):
     card_title = render_template('card_title')
-    if color is not None:
-        session.attributes[COLOR_KEY] = color
-        question_text = render_template('known_color', color=color)
-        reprompt_text = render_template('known_color_reprompt')
-    else:
-        question_text = render_template('unknown_color')
-        reprompt_text = render_template('unknown_color_reprompt')
-    return question(question_text).reprompt(reprompt_text).simple_card(card_title, question_text)
-
-
-@ask.intent('WhatsMyColorIntent')
-def whats_my_color():
-    card_title = render_template('card_title')
-    color = session.attributes.get(COLOR_KEY)
-    if color is not None:
-        now = int(time.time())
-        color = cpu_idle_query(now)
-        statement_text = render_template('known_color_bye', color=color)
+    now = int(time.time())
+    if metric is not None:
+        metric_value = get_metric_value(now, metric)
+        if metric_value is None:
+            question_text = render_template('unknown_metric_reprompt')
+            return question(question_text).reprompt(question_text).simple_card(card_title, question_text)
+        if type(metric_value) is not str:
+            metric_value = str(metric_value)
+        statement_text = render_template('known_metric_bye', metric=metric, value=metric_value)
         return statement(statement_text).simple_card(card_title, statement_text)
     else:
-        question_text = render_template('unknown_color_reprompt')
+        question_text = render_template('unknown_metric_reprompt')
         return question(question_text).reprompt(question_text).simple_card(card_title, question_text)
 
 

@@ -1,11 +1,10 @@
-MyColorIsIntent  my color is {Color}
-MyColorIsIntent  my favorite color is {Color}
-WhatsMyColorIntent whats my color
-WhatsMyColorIntent what is my color
-WhatsMyColorIntent say my color
-WhatsMyColorIntent tell me my color
-WhatsMyColorIntent whats my favorite color
-WhatsMyColorIntent what is my favorite color
-WhatsMyColorIntent say my favorite color
-WhatsMyColorIntent tell me my favorite color
-WhatsMyColorIntent tell me what my favorite color is
+WhatsTheValueIntent I want to know {Metric}
+WhatsTheValueIntent I want to know {Metric} value
+WhatsTheValueIntent give me {Metric}
+WhatsTheValueIntent give me {Metric} value
+WhatsTheValueIntent I would like to know {Metric}
+WhatsTheValueIntent I need to know {Metric}
+WhatsTheValueIntent I need to know {Metric} value
+WhatsTheValueIntent how about {Metric}
+
+
