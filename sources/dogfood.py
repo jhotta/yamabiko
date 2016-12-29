@@ -4,8 +4,8 @@ from datadog import initialize, api
 import time
 
 options = {
-    'api_key': '81df64ebed3a1ddf6ebf3b148e70b29e',
-    'app_key': 'a18c26f402f1fd0901eb291e21db769c6648cb5a'
+    'api_key': '',
+    'app_key': ''
 }
 
 initialize(**options)
@@ -39,7 +39,7 @@ def main():
     metrics = ['CPU', 'HDD', 'Memory']
 
     for metric in metrics:
-        print get_metric_value(now, metric)
+        print(get_metric_value(now, metric))
 
 
 if __name__ == '__main__':
