@@ -1,0 +1,8 @@
+{
+    "dev": {
+        "app_function": "yamabiko.app", 
+        "s3_bucket": "zappa-cu9adpb0f",
+        "aws_region": "us-east-1",
+        "profile_name": "190e"
+    }
+}
